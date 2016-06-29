@@ -1,13 +1,9 @@
-# watchOS-2-heartrate
+# watchOS-3-heartrate
 
 [![Join the chat at https://gitter.im/coolioxlr/watchOS-2-heartrate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/coolioxlr/watchOS-2-heartrate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-11/13/2015 Updates
-Apple finlly provide some sample code how to close ActivityRings
-https://developer.apple.com/library/watchos/samplecode/ActivityRings/Introduction/Intro.html#//apple_ref/doc/uid/TP40016623
 
-
-Examples to show streaming heartrate from watch using Swift
+Examples to show streaming heartrate from watchOS3 using Swift3
 
 - request healthkit authorization from watch
 - queary from healthkit to show heartrate
@@ -15,18 +11,16 @@ Examples to show streaming heartrate from watch using Swift
 
 ##Requirements
 
-- Xcode 7.0, iOS 9.0 SDK, watchOS 2.0 SDK
-- iOS 9.0 and watchOS 2.0
+- Xcode 8.0, iOS 10.0 SDK, watchOS 3.0 SDK
+- iOS 10 and watchOS 3.0
 
 ##How to build
 
 - Change the "Team" setting on [General] for each target.
 - Setup HealthKit for the WatchKit extension target.
 
-##watchOS Beta3 
+##watchOS3 Beta1 
 
-- Simulator now showing simulated heartrate 
+- Swift3  
 
-##watchOS Beta4
 
-- Updated with new APIs 

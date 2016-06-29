@@ -37,5 +37,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>For testing</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>For testing</string>
 </dict>
 </plist>
