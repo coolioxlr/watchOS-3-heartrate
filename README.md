@@ -23,4 +23,8 @@ Examples to show streaming heartrate from watchOS3 using Swift3
 
 - Swift3  
 
+##watchOS3 Beta4
+
+- Update to new Swift3 Beta4 API
+- Fix bugs related to continue query heart rate even when stop
 

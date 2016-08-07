@@ -26,7 +26,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     // define the activity type and location
     var session : HKWorkoutSession?
     let heartRateUnit = HKUnit(from: "count/min")
-    var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    //var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    var currenQuery : HKQuery?
     
     
     override func awake(withContext context: AnyObject?) {
@@ -69,13 +70,15 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         }
     }
     
-    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: NSError) {
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         // Do nothing for now
-        print("Workout error: \(error.userInfo)")
+        print("Workout error")
     }
     
+
     func workoutDidStart(_ date : Date) {
         if let query = createHeartRateStreamingQuery(date) {
+            self.currenQuery = query
             healthStore.execute(query)
         } else {
             label.setText("cannot start")
@@ -83,12 +86,9 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     }
     
     func workoutDidEnd(_ date : Date) {
-        if let query = createHeartRateStreamingQuery(date) {
-            healthStore.stop(query)
+            healthStore.stop(self.currenQuery!)
             label.setText("---")
-        } else {
-            label.setText("cannot stop")
-        }
+            session = nil
     }
     
     // MARK: - Actions
@@ -132,19 +132,22 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     }
     
     func createHeartRateStreamingQuery(_ workoutStartDate: Date) -> HKQuery? {
-        // adding predicate will not work
-        // let predicate = HKQuery.predicateForSamplesWithStartDate(workoutStartDate, endDate: nil, options: HKQueryOptions.None)
+
         
         guard let quantityType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else { return nil }
+        let datePredicate = HKQuery.predicateForSamples(withStart: workoutStartDate, end: nil, options: .strictEndDate )
+        let devicePredicate = HKQuery.predicateForObjects(from: [HKDevice.local()])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate, devicePredicate])
         
-        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType, predicate: nil, anchor: anchor, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
-            guard let newAnchor = newAnchor else {return} 
-            self.anchor = newAnchor
+        
+        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType, predicate: predicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
+            //guard let newAnchor = newAnchor else {return}
+            //self.anchor = newAnchor
             self.updateHeartRate(sampleObjects)
         }
         
         heartRateQuery.updateHandler = {(query, samples, deleteObjects, newAnchor, error) -> Void in
-            self.anchor = newAnchor!
+            //self.anchor = newAnchor!
             self.updateHeartRate(samples)
         }
         return heartRateQuery
@@ -176,14 +179,15 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         }
         
         let when = DispatchTime.now() + Double(Int64(0.5 * double_t(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        let queue = DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault)
-        queue.after(when: when) {
-            DispatchQueue.main.async(execute: {
+        
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.asyncAfter(deadline: when) {
                 self.animate(withDuration: 0.5, animations: {
                     self.heart.setWidth(50)
                     self.heart.setHeight(80)
-                })
-            })
+                })            }
+            
+            
         }
     }
 }
