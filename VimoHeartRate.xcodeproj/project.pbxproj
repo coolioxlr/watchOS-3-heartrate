@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1110B91D64207B00156B79 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1110B81D64207B00156B79 /* HealthKit.framework */; };
 		AA192F711B3C8F3F00A2FB8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F701B3C8F3F00A2FB8C /* AppDelegate.swift */; };
 		AA192F731B3C8F3F00A2FB8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192F721B3C8F3F00A2FB8C /* ViewController.swift */; };
 		AA192F761B3C8F3F00A2FB8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA192F741B3C8F3F00A2FB8C /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA1110B81D64207B00156B79 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		AA192F6D1B3C8F3F00A2FB8C /* VimoHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VimoHeartRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA192F701B3C8F3F00A2FB8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA192F721B3C8F3F00A2FB8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1110B91D64207B00156B79 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +168,7 @@
 		AA3B21FA1D2447D20077F2CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA1110B81D64207B00156B79 /* HealthKit.framework */,
 				AA3B21FB1D2447D20077F2CE /* HealthKit.framework */,
 			);
 			name = Frameworks;

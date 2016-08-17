@@ -29,8 +29,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
     //var anchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
     var currenQuery : HKQuery?
     
-    
-    override func awake(withContext context: AnyObject?) {
+    override func awake(withContext context: Any?) {
         super.awake(withContext: context)
     }
     
