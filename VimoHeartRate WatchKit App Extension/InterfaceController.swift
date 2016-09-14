@@ -135,8 +135,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         guard let quantityType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else { return nil }
         let datePredicate = HKQuery.predicateForSamples(withStart: workoutStartDate, end: nil, options: .strictEndDate )
-        let devicePredicate = HKQuery.predicateForObjects(from: [HKDevice.local()])
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate, devicePredicate])
+        //let devicePredicate = HKQuery.predicateForObjects(from: [HKDevice.local()])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate])
         
         
         let heartRateQuery = HKAnchoredObjectQuery(type: quantityType, predicate: predicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
