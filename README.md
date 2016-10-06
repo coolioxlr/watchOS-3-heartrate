@@ -6,7 +6,7 @@
 Examples to show streaming heartrate from watchOS3 using Swift3
 
 - request healthkit authorization from watch
-- queary from healthkit to show heartrate
+- query from healthkit to show heartrate
 
 
 ##Requirements
