@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>For testing</string>
+	<string>Read heart rate monitor data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>For testing</string>
+	<string>Share workout data with other apps.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
